@@ -7,8 +7,14 @@ android {
         applicationId "com.voonapp.boilerplate"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        versionCode getVersion('code')
+        versionName getVersion('name')
+
+        vectorDrawables.useSupportLibrary = true
+
+        jackOptions {
+            enabled true
+        }
     }
     buildTypes {
         release {
@@ -16,8 +22,34 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    aaptOptions {
+        ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:<dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
     compile 'com.android.support:appcompat-v7:25.1.0'
+}
+
+def getVersion(String type){
+    def major = 0
+    def minor = 0
+    def patch = 0
+
+    switch (type){
+        case 'code':
+            return major * 10000 + minor * 100 + patch
+        case 'name':
+            return "$major.$minor.$patch"
+    }
 }
