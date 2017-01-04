@@ -33,17 +33,29 @@ local.properties
 # Android Studio captures folder
 captures/
 
-# Intellij
+# Intellij ignores
 *.iml
-.idea/workspace.xml
-.idea/tasks.xml
-.idea/libraries
+*.ipr
+*.iws
+.idea/**
+
+# Intellij ignore exceptions
+!/.idea/vcs.xml
+!/.idea/fileTemplates/
+!/.idea/inspectionProfiles/
+!/.idea/scopes/
+!/.idea/codeStyleSettings.xml
+!/.idea/.name
+!/.idea/encodings.xml
+!/.idea/copyright/
+!/.idea/compiler.xml
 
 # Keystore files
 *.jks
 
 # External native build folder generated in Android Studio 2.2 and later
 .externalNativeBuild
+gen-external-apklibs
 
 ####################
 # Operating System #
