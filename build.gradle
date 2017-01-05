@@ -24,4 +24,5 @@ task clean(type: Delete) {
 
 task wrapper(type: Wrapper) {
     gradleVersion = '3.3'
+    distributionUrl = distributionUrl.replace("bin", "all")
 }
