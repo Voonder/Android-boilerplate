@@ -37,18 +37,19 @@ captures/
 *.iml
 *.ipr
 *.iws
-.idea/**
+.idea/*
 
 # Intellij ignore exceptions
-!/.idea/vcs.xml
+!/.idea/copyright/
 !/.idea/fileTemplates/
 !/.idea/inspectionProfiles/
 !/.idea/scopes/
-!/.idea/codeStyleSettings.xml
 !/.idea/.name
-!/.idea/encodings.xml
-!/.idea/copyright/
+!/.idea/codeStyleSettings.xml
 !/.idea/compiler.xml
+!/.idea/encodings.xml
+!/.idea/externalDependencies.xml
+!/.idea/vcs.xml
 
 # Keystore files
 *.jks
