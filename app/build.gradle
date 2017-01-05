@@ -1,55 +1,98 @@
 apply plugin: 'com.android.application'
 
+def signingProperties = getSigningProperties()
+
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
-    defaultConfig {
-        applicationId "com.voonapp.boilerplate"
-        minSdkVersion 15
-        targetSdkVersion 25
-        versionCode getVersion('code')
-        versionName getVersion('name')
+	compileSdkVersion 25
+	buildToolsVersion "25.0.2"
 
-        vectorDrawables.useSupportLibrary = true
+	defaultConfig {
+		applicationId "com.voonapp.boilerplate"
+		minSdkVersion 15
+		targetSdkVersion 25
+		versionCode getVersion('code')
+		versionName getVersion('name')
 
-        jackOptions {
-            enabled true
-        }
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
+		vectorDrawables.useSupportLibrary = true
 
-    aaptOptions {
-        ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:<dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~'
-    }
+		jackOptions {
+			enabled true
+		}
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
+		applicationVariants.all { variant ->
+			variant.outputs.each { output ->
+				def file = output.outputFile
+				def fileName = file.name.replace(".apk", "-v" + versionName + "-c" + versionCode + ".apk")
+				output.outputFile = new File(file.parentFile, fileName)
+			}
+		}
+	}
 
-    lintOptions {
-        abortOnError false
-    }
+	signingConfigs  {
+		release{
+			keyAlias signingProperties['KEY_ALIAS']
+			keyPassword signingProperties['KEY_PASSWORD']
+			storeFile file(signingProperties['STORE_FILE'])
+			storePassword signingProperties['STORE_PASSWORD']
+		}
+	}
+
+	buildTypes {
+		debug {
+			applicationIdSuffix '.debug'
+			versionNameSuffix '-DEBUG'
+			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+		}
+		release {
+			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+			signingConfig signingConfigs.release
+		}
+	}
+
+	aaptOptions {
+		ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:<dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~'
+	}
+
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_1_8
+		targetCompatibility JavaVersion.VERSION_1_8
+	}
+
+	lintOptions {
+		abortOnError false
+	}
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:25.1.0'
+	compile 'com.android.support:appcompat-v7:25.1.0'
 }
 
-def getVersion(String type){
-    def major = 0
-    def minor = 0
-    def patch = 0
+def getVersion(String type) {
+	def major = 0
+	def minor = 0
+	def patch = 0
 
-    switch (type){
-        case 'code':
-            return major * 10000 + minor * 100 + patch
-        case 'name':
-            return "$major.$minor.$patch"
-    }
+	switch (type) {
+		case 'code':
+			return major * 10000 + minor * 100 + patch
+		case 'name':
+			return "$major.$minor.$patch"
+	}
+}
+
+def getSigningProperties() {
+	def Properties properties = new Properties();
+	def propertiesFile = file('../signing.properties')
+
+	if (propertiesFile.canRead()) {
+		properties.load(new FileInputStream(propertiesFile))
+
+		if (properties != null && properties.containsKey('STORE_FILE') && properties.containsKey('STORE_PASSWORD') && properties.containsKey('KEY_ALIAS') && properties.containsKey('KEY_PASSWORD')) {
+			return properties
+		} else {
+			throw new Exception("Some entries are missing ! Entry STORE_FILE, STORE_PASSWORD, KEY_ALIAS and KEY_PASSWORD must be present in the signing.properties file.")
+		}
+	} else {
+		throw new FileNotFoundException("File not found ! Please create a signing.properties file under root project.")
+	}
 }
