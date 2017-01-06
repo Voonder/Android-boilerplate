@@ -1,6 +1,14 @@
 # Android Boilerplate
 Quickstart for Android project based on [@futurice/android-best-practices](https://github.com/futurice/android-best-practices)
 
+## Versioning
+
+All release changes can be viewed on our [changelog](./.github/CHANGELOG.md).
+
+## Code of Conduct
+
+Take a moment to read our Code of Conduct.
+
 ## Contributing
 
 Code contributions are welcome! Please see [Contribution Guidelines](./.github/CONTRIBUTING.md).
