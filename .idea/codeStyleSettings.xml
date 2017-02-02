@@ -64,9 +64,6 @@
             </value>
           </option>
         </AndroidXmlCodeStyleSettings>
-        <MarkdownNavigatorCodeStyleSettings>
-          <option name="RIGHT_MARGIN" value="-1" />
-        </MarkdownNavigatorCodeStyleSettings>
         <Objective-C-extensions>
           <option name="GENERATE_INSTANCE_VARIABLES_FOR_PROPERTIES" value="ASK" />
           <option name="RELEASE_STYLE" value="IVAR" />
@@ -513,7 +510,6 @@
           </indentOptions>
         </codeStyleSettings>
         <codeStyleSettings language="ObjectiveC">
-          <option name="SPACE_AROUND_UNARY_OPERATOR" value="true" />
           <indentOptions>
             <option name="USE_TAB_CHARACTER" value="true" />
             <option name="SMART_TABS" value="true" />
@@ -682,6 +678,6 @@
         </codeStyleSettings>
       </value>
     </option>
-    <option name="PREFERRED_PROJECT_CODE_STYLE" value="Personal" />
+    <option name="USE_PER_PROJECT_SETTINGS" value="true" />
   </component>
 </project>

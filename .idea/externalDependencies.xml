@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ExternalDependencies">
-    <plugin id="CMD Support" />
-    <plugin id="com.vladsch.idea.multimarkdown" />
     <plugin id="mobi.hsz.idea.gitignore" />
   </component>
 </project>
