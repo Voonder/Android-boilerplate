@@ -13,7 +13,7 @@ Take a moment to read our Code of Conduct.
 
 Code contributions are welcome! Please see [Contribution Guidelines](./.github/CONTRIBUTING.md).
 
-1. [Fork](https://github.com/Voonder/android_boilerplate/fork) the repository.
+1. [Fork](https://github.com/Voonder/android-boilerplate/fork) the repository.
 2. Create a local clone of the repository.
 3. Create a local branch (see the [Rules](./.github/CONTRIBUTING.md#rules) section)
 4. Commit your code, and push the changes to your own repository.
