@@ -64,13 +64,16 @@ android {
 }
 
 dependencies {
-	compile 'com.android.support:appcompat-v7:25.1.0'
+	compile 'com.android.support:appcompat-v7:25.3.1'
+
 	// Objects into JSON and vice-versa
 	compile 'com.google.code.gson:gson:2.8.0'
+
 	// Networking, caching, and images
 	compile 'com.squareup.retrofit2:retrofit:2.1.0'
 	compile 'com.squareup.okhttp3:okhttp:3.5.0'
 	compile 'com.squareup.picasso:picasso:2.5.2'
+
 	// LeakCanary
 	debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
 	releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
@@ -80,7 +83,7 @@ dependencies {
 	testCompile 'com.squareup.okhttp3:mockwebserver:3.5.0'
 }
 
-def getVersion(String type) {
+static def getVersion(String type) {
 	def major = 0
 	def minor = 0
 	def patch = 0
