@@ -19,7 +19,19 @@
 -keepattributes Signature
 -keepattributes *Annotation*
 
-#---------------Begin: proguard configuration for Gson  ----------
+##--------------- Begin: proguard configuration for GreenDAO ----------
+-keepclassmembers class ** {
+    @org.greenrobot.eventbus.Subscribe <methods>;
+}
+-keep enum org.greenrobot.eventbus.ThreadMode { *; }
+
+# Only required if you use AsyncExecutor
+#-keepclassmembers class * extends org.greenrobot.eventbus.util.ThrowableFailureEvent {
+#    <init>(java.lang.Throwable);
+#}
+##--------------- End: proguard configuration for GreenDAO ----------
+
+##--------------- Begin: proguard configuration for Gson ----------
 # Gson specific classes
 -keep class sun.misc.Unsafe { *; }
 #-keep class com.google.gson.stream.** { *; }
@@ -31,10 +43,9 @@
 -keep class * implements com.google.gson.TypeAdapterFactory
 -keep class * implements com.google.gson.JsonSerializer
 -keep class * implements com.google.gson.JsonDeserializer
+##--------------- End: proguard configuration for Gson ----------
 
-##---------------End: proguard configuration for Gson  ----------
-
-#---------------Begin: proguard configuration for Square  ----------
+##--------------- Begin: proguard configuration for Square ----------
 # Picasso
 -dontwarn com.squareup.okhttp.**
 
@@ -49,4 +60,4 @@
 -dontnote retrofit2.Platform$IOS$MainThreadExecutor
 -dontwarn retrofit2.Platform$Java8
 -keepattributes Exceptions
-##---------------End: proguard configuration for Square  ----------
+##--------------- End: proguard configuration for Square ----------
