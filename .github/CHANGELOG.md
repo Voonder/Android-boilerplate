@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.0 (2017-03-28
+
+* FIX gradle dependencies
+* minors improvements
+
 ## 1.1.0 (2017-03-28)
 
 * ADD GreenDAO library
