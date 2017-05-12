@@ -50,6 +50,9 @@
         <AndroidXmlCodeStyleSettings>
           <option name="USE_CUSTOM_SETTINGS" value="true" />
         </AndroidXmlCodeStyleSettings>
+        <MarkdownNavigatorCodeStyleSettings>
+          <option name="RIGHT_MARGIN" value="-1" />
+        </MarkdownNavigatorCodeStyleSettings>
         <Objective-C-extensions>
           <file>
             <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="Import" />
@@ -76,7 +79,9 @@
           </extensions>
         </Objective-C-extensions>
         <XML>
-          <option name="XML_LEGACY_SETTINGS_IMPORTED" value="true" />
+          <option name="XML_KEEP_LINE_BREAKS" value="false" />
+          <option name="XML_KEEP_BLANK_LINES" value="1" />
+          <option name="XML_SPACE_INSIDE_EMPTY_TAG" value="true" />
         </XML>
         <codeStyleSettings language="Groovy">
           <option name="KEEP_BLANK_LINES_IN_DECLARATIONS" value="1" />
@@ -97,10 +102,28 @@
           <option name="KEEP_BLANK_LINES_IN_DECLARATIONS" value="1" />
           <option name="KEEP_BLANK_LINES_IN_CODE" value="1" />
           <option name="KEEP_BLANK_LINES_BEFORE_RBRACE" value="1" />
+          <option name="SPACE_WITHIN_EMPTY_METHOD_PARENTHESES" value="true" />
+          <option name="SPACE_WITHIN_ARRAY_INITIALIZER_BRACES" value="true" />
+          <option name="SPACE_WITHIN_EMPTY_ARRAY_INITIALIZER_BRACES" value="true" />
+          <option name="KEEP_SIMPLE_LAMBDAS_IN_ONE_LINE" value="true" />
+          <option name="KEEP_SIMPLE_CLASSES_IN_ONE_LINE" value="true" />
+          <option name="ENUM_CONSTANTS_WRAP" value="2" />
           <indentOptions>
             <option name="USE_TAB_CHARACTER" value="true" />
             <option name="SMART_TABS" value="true" />
           </indentOptions>
+          <arrangement>
+            <groups>
+              <group>
+                <type>GETTERS_AND_SETTERS</type>
+                <order>KEEP</order>
+              </group>
+              <group>
+                <type>OVERRIDDEN_METHODS</type>
+                <order>BY_NAME</order>
+              </group>
+            </groups>
+          </arrangement>
         </codeStyleSettings>
         <codeStyleSettings language="JSON">
           <indentOptions>
@@ -113,6 +136,7 @@
           <option name="KEEP_BLANK_LINES_IN_DECLARATIONS" value="1" />
           <option name="KEEP_BLANK_LINES_IN_CODE" value="1" />
           <option name="KEEP_BLANK_LINES_BEFORE_RBRACE" value="1" />
+          <option name="BLANK_LINES_BEFORE_METHOD_BODY" value="1" />
           <indentOptions>
             <option name="USE_TAB_CHARACTER" value="true" />
             <option name="SMART_TABS" value="true" />
@@ -280,6 +304,5 @@
       </value>
     </option>
     <option name="USE_PER_PROJECT_SETTINGS" value="true" />
-    <option name="PREFERRED_PROJECT_CODE_STYLE" value="Personal" />
   </component>
 </project>
