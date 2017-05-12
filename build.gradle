@@ -16,6 +16,14 @@ allprojects {
 		jcenter()
 	}
 }
+
+ext {
+	appName = 'android-boilerplate'
+
+	androidVersion = '25.3.1'
+	leakcanaryVersion = '1.5.1'
+	okhttpVersion = '3.7.0'
+	retrofitVersion = '2.2.0'
 }
 
 task clean(type: Delete) {

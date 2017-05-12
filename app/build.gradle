@@ -5,7 +5,7 @@ def signingProperties = getSigningProperties()
 
 android {
 	compileSdkVersion 25
-	buildToolsVersion "25.0.2"
+	buildToolsVersion "25.0.3"
 
 	defaultConfig {
 		applicationId "com.voonapp.boilerplate"
@@ -22,9 +22,8 @@ android {
 
 		applicationVariants.all { variant ->
 			variant.outputs.each { output ->
-				def file = output.outputFile
-				def fileName = file.name.replace(".apk", "-v" + versionName + "-c" + versionCode + ".apk")
-				output.outputFile = new File(file.parentFile, fileName)
+				def apkName = "${appName}_v${versionName}_c${versionCode}.apk"
+				output.outputFile = new File(output.outputFile.parentFile, apkName)
 			}
 		}
 	}
@@ -35,6 +34,8 @@ android {
 			keyPassword signingProperties['KEY_PASSWORD']
 			storeFile file(signingProperties['STORE_FILE'])
 			storePassword signingProperties['STORE_PASSWORD']
+			v1SigningEnabled true
+			v2SigningEnabled true
 		}
 	}
 
@@ -42,11 +43,20 @@ android {
 		debug {
 			applicationIdSuffix '.debug'
 			versionNameSuffix '-DEBUG'
-			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 		}
 		release {
-			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+			minifyEnabled true
+			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 			signingConfig signingConfigs.release
+		}
+	}
+
+	productFlavors {
+		paid {
+			versionNameSuffix '-PAID'
+		}
+		free {
+			versionNameSuffix '-FREE'
 		}
 	}
 
@@ -55,8 +65,14 @@ android {
 	}
 
 	compileOptions {
+		encoding "UTF-8"
+		incremental true
 		sourceCompatibility JavaVersion.VERSION_1_8
 		targetCompatibility JavaVersion.VERSION_1_8
+	}
+
+	dexOptions {
+		dexInProcess true
 	}
 
 	lintOptions {
@@ -69,26 +85,22 @@ greendao {
 }
 
 dependencies {
-	compile 'com.android.support:appcompat-v7:25.3.1'
-
-	// Objects into JSON and vice-versa
-	compile 'com.google.code.gson:gson:2.8.0'
+	compile "com.android.support:appcompat-v7:${androidVersion}"
 
 	// Networking, caching, and images
-	compile 'com.squareup.retrofit2:retrofit:2.1.0'
-	compile 'com.squareup.okhttp3:okhttp:3.5.0'
+	compile "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+	compile "com.squareup.retrofit2:converter-moshi:${retrofitVersion}"
+	compile "com.squareup.okhttp3:okhttp:${okhttpVersion}"
+	compile "com.squareup.okhttp3:logging-interceptor:${okhttpVersion}"
 	compile 'com.squareup.picasso:picasso:2.5.2'
 
 	// SQLite Database
-	compile 'org.greenrobot:greendao:3.2.0'
+	compile 'org.greenrobot:greendao:3.2.2'
 
 	// LeakCanary
-	debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
-	releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
-
-	// Test Dependencies
-	testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
-	testCompile 'com.squareup.okhttp3:mockwebserver:3.5.0'
+	debugCompile "com.squareup.leakcanary:leakcanary-android:${leakcanaryVersion}"
+	releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:${leakcanaryVersion}"
+	testCompile "com.squareup.leakcanary:leakcanary-android-no-op:${leakcanaryVersion}"
 }
 
 static def getVersion(String type) {
