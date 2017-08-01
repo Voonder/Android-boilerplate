@@ -1,9 +1,13 @@
-#if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME};#end
-#parse("Javadoc Header.java")
-public class ${NAME}{
-    private static ${NAME} ourInstance = new ${NAME}();
+#if (${PACKAGE_NAME} != "")package ${PACKAGE_NAME};#end
 
-    public static ${NAME} getInstance() {
+#if (${IMPORT_BLOCK} != "")${IMPORT_BLOCK}
+#end
+#parse("Javadoc Header.java")
+
+#if (${VISIBILITY} == "PUBLIC")public #end class ${NAME} #if (${SUPERCLASS} != "")extends ${SUPERCLASS} #end #if (${INTERFACES} != "")implements ${INTERFACES} #end {
+    private static final ${NAME} ourInstance = new ${NAME}();
+
+    #if (${VISIBILITY} == "PUBLIC")public #end static ${NAME} getInstance() {
         return ourInstance;
     }
 

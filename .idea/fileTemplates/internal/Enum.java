@@ -1,4 +1,8 @@
-#if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME};#end
+#if (${PACKAGE_NAME} != "")package ${PACKAGE_NAME};#end
+
+#if (${IMPORT_BLOCK} != "")${IMPORT_BLOCK}
+#end
 #parse("Javadoc Header.java")
-public enum ${NAME} {
+
+#if (${VISIBILITY} == "PUBLIC")public #end enum ${NAME} #if (${INTERFACES} != "")implements ${INTERFACES} #end {
 }

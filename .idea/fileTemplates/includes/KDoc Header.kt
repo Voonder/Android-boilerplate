@@ -2,7 +2,7 @@
 /**
  * ${NAME} description
  * 
- * @author ${author} - ${company} <a href="mailto:${email}">${email}</a> 
+ * @author ${author} - ${company} [${email}](${email}) 
  * @version ${version}
  * @since ${YEAR}-${MONTH}-${DAY}
  */
