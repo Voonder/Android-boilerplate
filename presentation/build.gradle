@@ -1,33 +1,63 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    compileSdkVersion setup.compileSdk
+    buildToolsVersion setup.buildTools
+
     defaultConfig {
         applicationId "com.voonapp.boilerplate"
-        minSdkVersion 15
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        minSdkVersion setup.minSdk
+        targetSdkVersion setup.targetSdk
+        versionCode getFormattedVersion('code')
+        versionName getFormattedVersion('name')
     }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+    }
+
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
 
+kapt {
+    generateStubs = true
+}
+
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:26.0.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.0'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.0'
+    def aptDependencies = rootProject.ext.aptDependencies
+    def presentationDependencies = rootProject.ext.presentationDependencies
+    def presentationTestDependencies = rootProject.ext.presentationTestDependencies
+    def debugDependencies = rootProject.ext.debugDependencies
+    def releaseDependencies = rootProject.ext.releaseDependencies
+
+    implementation project(':data')
+    implementation project(':domain')
+
+    presentationDependencies.each {
+        implementation "${it}"
+    }
+
+    presentationTestDependencies.each {
+        testImplementation "${it}"
+    }
+
+    debugDependencies.each {
+        debugImplementation "${it}"
+    }
+
+    releaseDependencies.each {
+        releaseImplementation "${it}"
+    }
+
+    aptDependencies.each {
+        kapt "${it}"
+    }
 }
