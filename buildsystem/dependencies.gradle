@@ -1,0 +1,132 @@
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+    }
+}
+
+ext {
+    // IDE
+    gradleVersion = '3.0.0-alpha9'
+    kotlinVersion = '1.1.3-2'
+
+    // SETUP
+    setup = [
+            compileSdk: 26,
+            buildTools: '26.0.1',
+            minSdk: 15,
+            targetSdk: 26
+    ]
+
+    // LIBRARY
+    androidVersion = '26.0.1'
+    butterknifeVersion = '8.8.0'
+    constraintLayoutVersion = '1.0.2'
+    daggerVersion = '2.11'
+    glideVersion = '4.0.0'
+    javaxVersion = '1'
+    leakCanaryVersion = '1.5.1'
+    moshiVersion = '1.5.0'
+    okhttpVersion = '3.8.1'
+    retrofitVersion = '2.3.0'
+    rxAndroidVersion = '2.0.1'
+    rxKotlinVersion = '2.1.0'
+
+    presentationDependencies = [
+            "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlinVersion}",
+
+            // Android
+            "com.android.support:appcompat-v7:${androidVersion}",
+            "com.android.support:design:${androidVersion}",
+            "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}",
+
+            // Butter Knife
+            "com.jakewharton:butterknife:${butterknifeVersion}",
+
+            // Dagger 2
+            "com.google.dagger:dagger-android:${daggerVersion}",
+            "com.google.dagger:dagger-android-support:${daggerVersion}",
+
+            // Glide
+            "com.github.bumptech.glide:glide:${glideVersion}",
+
+            // Moshi
+            "com.squareup.moshi:moshi:${moshiVersion}",
+            "com.squareup.moshi:moshi-adapters:${moshiVersion}",
+            "com.squareup.moshi:moshi-kotlin:${moshiVersion}",
+
+            // OkHttp
+            "com.squareup.okhttp3:okhttp:${okhttpVersion}",
+            "com.squareup.okhttp3:logging-interceptor:${okhttpVersion}",
+
+            //Retrofit
+            "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
+            "com.squareup.retrofit2:converter-moshi:${retrofitVersion}",
+
+            // RxAndroid
+            "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+            "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}"
+    ]
+
+    presentationTestDependencies = [
+            // LeakCanary
+            "com.squareup.leakcanary:leakcanary-android-no-op:${leakCanaryVersion}"
+    ]
+
+    domainDependencies = [
+            "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlinVersion}",
+
+            // Inject
+            "javax.inject:javax.inject:${javaxVersion}",
+
+            // Moshi
+            "com.squareup.moshi:moshi:${moshiVersion}",
+
+            // RxAndroid
+            "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}"
+    ]
+
+    domainTestDependencies = []
+
+    dataDependencies = [
+            "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlinVersion}",
+
+            // Inject
+            "javax.inject:javax.inject:${javaxVersion}",
+
+            // Moshi
+            "com.squareup.moshi:moshi:${moshiVersion}",
+
+            //Retrofit
+            "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+
+            // RxAndroid
+            "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+            "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}"
+    ]
+
+    dataTestDependencies = []
+
+    debugDependencies = [
+            // LeakCanary
+            "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}"
+    ]
+
+    releaseDependencies = [
+            // LeakCanary
+            "com.squareup.leakcanary:leakcanary-android-no-op:${leakCanaryVersion}"
+    ]
+
+    aptDependencies = [
+            // ButterKnife
+            "com.jakewharton:butterknife-compiler:${butterknifeVersion}",
+
+            // Dagger 2
+            "com.google.dagger:dagger-compiler:${daggerVersion}",
+
+            // Glide
+            "com.github.bumptech.glide:compiler:${glideVersion}"
+    ]
+}

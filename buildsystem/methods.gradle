@@ -1,0 +1,17 @@
+ext {
+    getFormattedVersion = this.&getFormattedVersion
+}
+
+static def getFormattedVersion(String type) {
+    def major = 1
+    def minor = 0
+    def patch = 0
+
+    switch (type) {
+        case 'code':
+        case 'database':
+            return major * 100000 + minor * 1000 + patch
+        case 'name':
+            return "$major.$minor.$patch"
+    }
+}

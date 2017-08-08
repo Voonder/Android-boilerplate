@@ -40,6 +40,7 @@ captures/
 .idea/*
 
 # Intellij ignore exceptions
+!/.idea/icon**
 !/.idea/copyright/
 !/.idea/fileTemplates/
 !/.idea/inspectionProfiles/
