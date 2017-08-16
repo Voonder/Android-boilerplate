@@ -1,0 +1,42 @@
+language: android
+
+jdk:
+  - oraclejdk8
+
+licenses:
+    - 'android-sdk-preview-license-.+'
+    - 'android-sdk-preview-license'
+    - 'android-sdk-license-.+'
+    - 'android-sdk-license'
+    - 'google-gdk-license-.+'
+
+android:
+  components:
+    - tools
+    - platform-tools
+    - tools
+    - build-tools-26.0.1
+    - android-26
+    - extra
+    - extra-android-support
+    - extra-google-m2repository
+    - extra-android-m2repository
+
+before_script:
+  - chmod +x gradlew
+
+script:
+  - ./gradlew clean
+  - ./gradlew checkstyle
+  - ./gradlew build
+
+sudo: false
+
+before_cache:
+  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+env:
+  - GRADLE_OPTS="-XX:MaxPermSize=1024m -XX:+CMSClassUnloadingEnabled -XX:+HeapDumpOnOutOfMemoryError -Xmx2048m -Dfile.encoding=UTF-8"
