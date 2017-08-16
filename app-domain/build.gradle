@@ -1,0 +1,11 @@
+apply plugin: 'kotlin'
+
+dependencies {
+    rootProject.ext.domainDependencies.each {
+        implementation it
+    }
+
+    rootProject.ext.domainTestDependencies.each {
+        testImplementation it
+    }
+}

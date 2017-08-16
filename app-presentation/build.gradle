@@ -1,0 +1,94 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+apply from: rootProject.file("buildsystem/android.gradle")
+apply from: rootProject.file("buildsystem/version.gradle")
+apply from: rootProject.file("buildsystem/checkstyle.gradle")
+
+android {
+    compileSdkVersion configuration.compileSdk
+    buildToolsVersion configuration.buildTools
+
+    defaultConfig {
+        applicationId configuration.applicationId
+        minSdkVersion configuration.minSdk
+        targetSdkVersion configuration.targetSdk
+        versionCode gitVersionCode
+        versionName gitVersionName
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+    }
+
+    signingConfigs {
+        debug {
+            keyAlias 'OAB JN'
+            keyPassword 'OAB_android'
+            storeFile rootProject.file("buildsystem/keystore/debug.jks")
+            storePassword 'OAB_android'
+        }
+        release {
+            keyAlias 'OAB JN'
+            keyPassword 'OAB_android'
+            storeFile rootProject.file("buildsystem/keystore/release.jks")
+            storePassword 'OAB_android'
+        }
+    }
+
+    buildTypes {
+        debug {
+            versionNameSuffix '-DEBUG'
+
+            proguardFiles rootProject.file("buildsystem/proguard/proguard-rules-debug.pro")
+            signingConfig signingConfigs.debug
+        }
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), rootProject.file("buildsystem/proguard/proguard-rules.pro")
+            signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+kapt {
+    generateStubs = true
+}
+
+dependencies {
+    implementation project(':app-data')
+    implementation project(':app-domain')
+
+    presentationDependencies.each {
+        implementation it
+    }
+
+    presentationTestDependencies.each {
+        testImplementation it
+    }
+
+    debugDependencies.each {
+        debugImplementation it
+    }
+
+    releaseDependencies.each {
+        releaseImplementation it
+    }
+
+    aptDependencies.each {
+        kapt it
+    }
+}
+

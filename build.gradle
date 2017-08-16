@@ -1,9 +1,5 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-apply from: './buildsystem/methods.gradle'
-apply from: './buildsystem/ci.gradle'
-
 buildscript {
-    apply from: './buildsystem/dependencies.gradle'
+    apply from: rootProject.file("buildsystem/dependencies.gradle")
 
     repositories {
         google()
@@ -11,15 +7,8 @@ buildscript {
     }
 
     dependencies {
-        classpath "com.android.tools.build:gradle:${gradleVersion}"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}"
-    }
-}
-
-allprojects {
-    repositories {
-        google()
-        jcenter()
+        classpath "com.android.tools.build:gradle:$gradleVersion"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     }
 }
 
