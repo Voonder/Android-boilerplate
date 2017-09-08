@@ -1,22 +1,22 @@
 buildscript {
-    apply from: rootProject.file("buildsystem/dependencies.gradle")
+  apply from: rootProject.file("buildsystem/dependencies.gradle")
 
-    repositories {
-        google()
-        jcenter()
-    }
+  repositories {
+    google()
+    jcenter()
+  }
 
-    dependencies {
-        classpath "com.android.tools.build:gradle:$gradleVersion"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-    }
+  dependencies {
+    classpath "com.android.tools.build:gradle:$gradleVersion"
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+  }
 }
 
 task clean(type: Delete) {
-    delete rootProject.buildDir
+  delete rootProject.buildDir
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '4.1'
-    distributionType = Wrapper.DistributionType.ALL
+  gradleVersion = '4.1'
+  distributionType = Wrapper.DistributionType.ALL
 }

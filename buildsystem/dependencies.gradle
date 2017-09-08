@@ -1,127 +1,136 @@
 // IDE
-final def gradle = '3.0.0-beta2'
-final def kotlin = '1.1.4'
+final def gradle = '3.0.0-beta4'
+final def kotlin = '1.1.4-3'
 
-// LIBRARY
+// LIBRARIES
 final def androidVersion = '26.0.1'
 final def butterknifeVersion = '8.8.1'
 final def constraintLayoutVersion = '1.0.2'
 final def daggerVersion = '2.11'
-final def glideVersion = '4.0.0'
+final def glideVersion = '4.1.1'
 final def javaxVersion = '1'
-final def leakCanaryVersion = '1.5.1'
+final def leakCanaryVersion = '1.5.2'
 final def moshiVersion = '1.5.0'
-final def okhttpVersion = '3.8.1'
+final def okHttpVersion = '3.9.0'
 final def retrofitVersion = '2.3.0'
 final def rxAndroidVersion = '2.0.1'
 final def rxKotlinVersion = '2.1.0'
 
+// TESTING LIBRARIES
+final def assertJVersion = '3.8.0'
+final def espressoVersion = '3.0.1'
+final def jUnitVersion = '4.12'
+final def mockitoVersion = '2.8.9'
+final def mockitoKotlinVersion = '1.5.0'
+final def robolectricVersion = '3.4.2'
+final def supportTestVersion = '1.0.1'
+
 allprojects {
-    repositories {
-        google()
-        jcenter()
-        mavenCentral()
+  repositories {
+    google()
+    jcenter()
+    mavenCentral()
+  }
+
+  configurations.all {
+    resolutionStrategy {
+      force "org.jetbrains.kotlin:kotlin-stdlib:1.1.4-3"
     }
+  }
 }
 
 ext {
-    gradleVersion = gradle
-    kotlinVersion = kotlin
+  gradleVersion = gradle
+  kotlinVersion = kotlin
 
-    presentationDependencies = [
-            "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlinVersion}",
+  cacheDependencies = [
+      javaxInject: "javax.inject:javax.inject:$javaxVersion",
+      kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion",
+      rxKotlin: "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
+  ]
 
-            // Android
-            "com.android.support:appcompat-v7:${androidVersion}",
-            "com.android.support:design:${androidVersion}",
-            "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}",
+  cacheTestDependencies = [
+      junit: "junit:junit:$jUnitVersion",
+      kotlinJUnit: "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion",
+      robolectric: "org.robolectric:robolectric:$robolectricVersion",
+  ]
 
-            // Butter Knife
-            "com.jakewharton:butterknife:${butterknifeVersion}",
+  dataDependencies = [
+      javaxInject: "javax.inject:javax.inject:$javaxVersion",
+      kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion",
+      rxKotlin: "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
+  ]
 
-            // Dagger 2
-            "com.google.dagger:dagger-android:${daggerVersion}",
-            "com.google.dagger:dagger-android-support:${daggerVersion}",
+  dataTestDependencies = [
+      junit: "junit:junit:$jUnitVersion",
+      kotlinJUnit: "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion",
+      mockito: "com.nhaarman:mockito-kotlin:$mockitoKotlinVersion"
+  ]
 
-            // Glide
-            "com.github.bumptech.glide:glide:${glideVersion}",
+  domainDependencies = [
+      javaxInject: "javax.inject:javax.inject:$javaxVersion",
+      kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion",
+      rxKotlin: "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
+  ]
 
-            // Moshi
-            "com.squareup.moshi:moshi:${moshiVersion}",
-            "com.squareup.moshi:moshi-adapters:${moshiVersion}",
-            "com.squareup.moshi:moshi-kotlin:${moshiVersion}",
+  domainTestDependencies = [
+      junit: "junit:junit:$jUnitVersion",
+      kotlinJUnit: "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion",
+      mockito: "com.nhaarman:mockito-kotlin:$mockitoKotlinVersion"
+  ]
 
-            // OkHttp
-            "com.squareup.okhttp3:okhttp:${okhttpVersion}",
-            "com.squareup.okhttp3:logging-interceptor:${okhttpVersion}",
+  mobileUiDependencies = [
+      appCompatV7: "com.android.support:appcompat-v7:$androidVersion",
+      dagger: "com.google.dagger:dagger:$daggerVersion",
+      daggerCompiler: "com.google.dagger:dagger-compiler:$daggerVersion",
+      daggerSupport: "com.google.dagger:dagger-android-support:$daggerVersion",
+      glide: "com.github.bumptech.glide:glide:$glideVersion",
+      javaxInject: "javax.inject:javax.inject:$javaxVersion",
+      kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion",
+      leakCanary: "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion",
+      leakCanaryNoOp: "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion",
+      rxAndroid: "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
+      rxKotlin: "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
+  ]
 
-            //Retrofit
-            "com.squareup.retrofit2:retrofit:${retrofitVersion}",
-            "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
-            "com.squareup.retrofit2:converter-moshi:${retrofitVersion}",
+  mobileUiTestDependencies = [
+      androidRunner: "com.android.support.test:runner:$supportTestVersion",
+      androidRules: "com.android.support.test:rules:$supportTestVersion",
+      espressoCore: "com.android.support.test.espresso:espresso-core:$espressoVersion",
+      espressoIntents: "com.android.support.test.espresso:espresso-intents:$espressoVersion",
+      espressoContrib: "com.android.support.test.espresso:espresso-contrib:$espressoVersion",
+      junit: "junit:junit:$jUnitVersion",
+      mockito: "com.nhaarman:mockito-kotlin:$mockitoKotlinVersion",
+      mockitoAndroid: "org.mockito:mockito-android:$mockitoVersion",
+  ]
 
-            // RxAndroid
-            "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
-            "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}"
-    ]
+  presentationDependencies = [
+      javaxInject: "javax.inject:javax.inject:$javaxVersion",
+      kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion",
+      rxKotlin: "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
+  ]
 
-    presentationTestDependencies = [
-            // LeakCanary
-            "com.squareup.leakcanary:leakcanary-android-no-op:${leakCanaryVersion}"
-    ]
+  presentationTestDependencies = [
+      junit: "junit:junit:$jUnitVersion",
+      kotlinJUnit: "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion",
+      mockito: "com.nhaarman:mockito-kotlin:$mockitoKotlinVersion"
+  ]
 
-    domainDependencies = [
-            "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlinVersion}",
+  remoteDependencies = [
+      javaxInject: "javax.inject:javax.inject:$javaxVersion",
+      kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion",
+      moshi: "com.squareup.moshi:moshi-kotlin:$moshiVersion",
+      okHttp: "com.squareup.okhttp3:okhttp:$okHttpVersion",
+      okHttpLogger: "com.squareup.okhttp3:logging-interceptor:$okHttpVersion",
+      retrofit: "com.squareup.retrofit2:retrofit:$retrofitVersion",
+      retrofitConverter: "com.squareup.retrofit2:converter-moshi:$retrofitVersion",
+      retrofitAdapter: "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
+      rxKotlin: "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
+  ]
 
-            // Inject
-            "javax.inject:javax.inject:${javaxVersion}",
-
-            // Moshi
-            "com.squareup.moshi:moshi:${moshiVersion}",
-
-            // RxAndroid
-            "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}"
-    ]
-
-    domainTestDependencies = []
-
-    dataDependencies = [
-            "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlinVersion}",
-
-            // Inject
-            "javax.inject:javax.inject:${javaxVersion}",
-
-            // Moshi
-            "com.squareup.moshi:moshi:${moshiVersion}",
-
-            //Retrofit
-            "com.squareup.retrofit2:retrofit:${retrofitVersion}",
-
-            // RxAndroid
-            "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
-            "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}"
-    ]
-
-    dataTestDependencies = []
-
-    debugDependencies = [
-            // LeakCanary
-            "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}"
-    ]
-
-    releaseDependencies = [
-            // LeakCanary
-            "com.squareup.leakcanary:leakcanary-android-no-op:${leakCanaryVersion}"
-    ]
-
-    aptDependencies = [
-            // ButterKnife
-            "com.jakewharton:butterknife-compiler:${butterknifeVersion}",
-
-            // Dagger 2
-            "com.google.dagger:dagger-compiler:${daggerVersion}",
-
-            // Glide
-            "com.github.bumptech.glide:compiler:${glideVersion}"
-    ]
+  remoteTestDependencies = [
+      junit: "junit:junit:$jUnitVersion",
+      kotlinJUnit: "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion",
+      mockito: "com.nhaarman:mockito-kotlin:$mockitoKotlinVersion"
+  ]
 }

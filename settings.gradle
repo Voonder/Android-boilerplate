@@ -1,6 +1,8 @@
-include ':app-presentation', ':app-domain', ':app-data'
-
-// TODO : Find a way to avoid including this folder (use only to display file on Android View Project
-// include ':buildsystem'
+include ':cache'
+include ':data'
+include ':domain'
+include ':mobile-ui'
+include ':presentation'
+include ':remote'
 
 rootProject.name = "Android Boilerplate"

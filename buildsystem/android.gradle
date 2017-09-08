@@ -1,9 +1,9 @@
 ext.configuration = [
-        applicationId: "com.voonapp.androidboilerplate",
-        applicationName: "Android Boilerplate",
+    applicationId: "com.voonapp.androidboilerplate",
+    applicationName: "Android Boilerplate",
 
-        compileSdk: 26,
-        buildTools: '26.0.1',
-        minSdk: 15,
-        targetSdk: 26
+    compileSdk: 26,
+    buildTools: '26.0.1',
+    minSdk: 15,
+    targetSdk: 26
 ]

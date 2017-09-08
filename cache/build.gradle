@@ -1,0 +1,101 @@
+/*
+ * Copyright (c) 2017 Voonder
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+  compileSdkVersion 26
+  buildToolsVersion "26.0.1"
+
+  defaultConfig {
+    minSdkVersion 15
+    targetSdkVersion 26
+//    multiDexEnabled = true
+  }
+
+  sourceSets {
+    def pathApt = "$buildDir/generated/source/kapt"
+
+    main.java.srcDirs += 'src/main/kotlin'
+    main.java.srcDirs += [file("$pathApt/main")]
+
+    debug.java.srcDirs += [file("$pathApt/debug")]
+    release.java.srcDirs += [file("$pathApt/release")]
+
+    test.java.srcDirs += 'src/test/kotlin'
+  }
+
+  aaptOptions {
+    ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:<dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~'
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+//  dexOptions {
+//    preDexLibraries = false
+//    dexInProcess = false
+//    javaMaxHeapSize "4g"
+//  }
+
+  lintOptions {
+    quiet true
+    abortOnError false
+    ignoreWarnings true
+    disable 'InvalidPackage' // Some libraries have issues with this.
+    disable 'OldTargetApi' // Lint gives this warning but SDK 20 would be Android L Beta.
+    disable 'IconDensities' // For testing purpose.
+    disable 'IconMissingDensityFolder' // For testing purpose.
+  }
+
+  packagingOptions {
+    exclude 'LICENSE.txt'
+    exclude 'META-INF/DEPENDENCIES'
+    exclude 'META-INF/ASL2.0'
+    exclude 'META-INF/NOTICE'
+    exclude 'META-INF/LICENSE'
+  }
+
+  testOptions {
+    unitTests {
+      includeAndroidResources = true
+    }
+  }
+}
+
+dependencies {
+  def cacheDependencies = rootProject.ext.cacheDependencies
+  def cacheTestDependencies = rootProject.ext.cacheTestDependencies
+
+  implementation project(':data')
+
+  implementation cacheDependencies.javaxInject
+  implementation cacheDependencies.rxKotlin
+  implementation cacheDependencies.kotlin
+
+  testImplementation cacheTestDependencies.junit
+  testImplementation cacheTestDependencies.kotlinJUnit
+  testImplementation cacheTestDependencies.robolectric
+}
