@@ -20,29 +20,21 @@
  * SOFTWARE.
  */
 
-apply plugin: 'kotlin'
+package com.voonapp.boilerplate.presentation.mapper
 
-sourceCompatibility = "1.8"
-targetCompatibility = "1.8"
+/**
+ * Interface for model mappers. It provides helper methods that facilitate
+ * retrieving of models from outer layers
+ *
+ * @param <V> the view model input type
+ * @param <D> the domain model output type
+ *
+ * @author Julien NORMAND - Orange Applications for Business [julien.normand@orange.com](julien.normand@orange.com)
+ * @version 1.0.0
+ * @since 2017-09-09
+ */
+interface Mapper<out V, in D> {
 
-dependencies {
-  def remoteDependencies = rootProject.ext.remoteDependencies
-  def remoteTestDependencies = rootProject.ext.remoteTestDependencies
+  fun mapToView(type: D): V
 
-  implementation project(':data')
-
-  implementation remoteDependencies.javaxInject
-  implementation remoteDependencies.kotlin
-  implementation remoteDependencies.moshi
-  implementation remoteDependencies.moshiAdapter
-  implementation remoteDependencies.okHttp
-  implementation remoteDependencies.okHttpLogger
-  implementation remoteDependencies.retrofit
-  implementation remoteDependencies.retrofitConverter
-  implementation remoteDependencies.retrofitAdapter
-  implementation remoteDependencies.rxKotlin
-
-  implementation remoteTestDependencies.junit
-  implementation remoteTestDependencies.kotlinJUnit
-  implementation remoteTestDependencies.mockito
 }

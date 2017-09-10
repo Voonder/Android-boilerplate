@@ -56,7 +56,6 @@ android {
   buildTypes {
     debug {
       versionNameSuffix '-DEBUG'
-
       proguardFiles rootProject.file("buildsystem/proguard/proguard-rules-debug.pro")
       signingConfig signingConfigs.debug
       testCoverageEnabled true
@@ -64,7 +63,7 @@ android {
     release {
       minifyEnabled true
       shrinkResources true
-      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), rootProject.file("buildsystem/proguard/proguard-rules.pro")
       signingConfig signingConfigs.release
     }
   }
@@ -79,6 +78,8 @@ android {
     release.java.srcDirs += [file("$pathApt/release")]
 
     test.java.srcDirs += 'src/test/kotlin'
+
+    androidTest.java.srcDirs += 'src/androidTest/kotlin'
   }
 
   aaptOptions {
@@ -124,9 +125,10 @@ dependencies {
   def mobileUiDependencies = rootProject.ext.mobileUiDependencies
   def mobileUiTestDependencies = rootProject.ext.mobileUiTestDependencies
 
-  implementation project(':presentation')
-  implementation project(':data')
   implementation project(':cache')
+  implementation project(':data')
+  implementation project(':domain')
+  implementation project(':presentation')
   implementation project(':remote')
 
   implementation mobileUiDependencies.appCompatV7

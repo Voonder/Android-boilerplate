@@ -20,29 +20,10 @@
  * SOFTWARE.
  */
 
-apply plugin: 'kotlin'
+package com.voonapp.boilerplate.cache.test
 
-sourceCompatibility = "1.8"
-targetCompatibility = "1.8"
+object DefaultConfig {
 
-dependencies {
-  def remoteDependencies = rootProject.ext.remoteDependencies
-  def remoteTestDependencies = rootProject.ext.remoteTestDependencies
-
-  implementation project(':data')
-
-  implementation remoteDependencies.javaxInject
-  implementation remoteDependencies.kotlin
-  implementation remoteDependencies.moshi
-  implementation remoteDependencies.moshiAdapter
-  implementation remoteDependencies.okHttp
-  implementation remoteDependencies.okHttpLogger
-  implementation remoteDependencies.retrofit
-  implementation remoteDependencies.retrofitConverter
-  implementation remoteDependencies.retrofitAdapter
-  implementation remoteDependencies.rxKotlin
-
-  implementation remoteTestDependencies.junit
-  implementation remoteTestDependencies.kotlinJUnit
-  implementation remoteTestDependencies.mockito
+  //The api level that RoboElectric will use to run the unit tests
+  const val EMULATE_SDK = 15
 }

@@ -20,29 +20,24 @@
  * SOFTWARE.
  */
 
-apply plugin: 'kotlin'
+package com.voonapp.boilerplate.ui
 
-sourceCompatibility = "1.8"
-targetCompatibility = "1.8"
+import com.voonapp.boilerplate.domain.executor.PostExecutionThread
+import io.reactivex.Scheduler
+import io.reactivex.android.schedulers.AndroidSchedulers
+import javax.inject.Inject
 
-dependencies {
-  def remoteDependencies = rootProject.ext.remoteDependencies
-  def remoteTestDependencies = rootProject.ext.remoteTestDependencies
+/**
+ * MainThread (UI Thread) implementation based on a [Scheduler]
+ * which will execute actions on the Android UI thread
+ *
+ * @author Julien NORMAND - Orange Applications for Business [julien.normand@orange.com](julien.normand@orange.com)
+ * @version 1.0.0
+ * @since 2017-09-10
+ */
+class UiThread @Inject internal constructor() : PostExecutionThread {
 
-  implementation project(':data')
+  override val scheduler: Scheduler
+    get() = AndroidSchedulers.mainThread()
 
-  implementation remoteDependencies.javaxInject
-  implementation remoteDependencies.kotlin
-  implementation remoteDependencies.moshi
-  implementation remoteDependencies.moshiAdapter
-  implementation remoteDependencies.okHttp
-  implementation remoteDependencies.okHttpLogger
-  implementation remoteDependencies.retrofit
-  implementation remoteDependencies.retrofitConverter
-  implementation remoteDependencies.retrofitAdapter
-  implementation remoteDependencies.rxKotlin
-
-  implementation remoteTestDependencies.junit
-  implementation remoteTestDependencies.kotlinJUnit
-  implementation remoteTestDependencies.mockito
 }

@@ -22,4 +22,4 @@
   ~ SOFTWARE.
   -->
 
-<manifest package="com.example.androidboilerplate" />
+<manifest package="com.voonapp.androidboilerplate.test"/>

@@ -20,29 +20,34 @@
  * SOFTWARE.
  */
 
-apply plugin: 'kotlin'
+package com.voonapp.boilerplate.ui.di
 
-sourceCompatibility = "1.8"
-targetCompatibility = "1.8"
+import android.app.Application
+import com.voonapp.boilerplate.ui.App
+import com.voonapp.boilerplate.ui.di.module.ActivityBindingModule
+import com.voonapp.boilerplate.ui.di.module.ApplicationModule
+import com.voonapp.boilerplate.ui.di.scope.PerApplication
+import dagger.BindsInstance
+import dagger.Component
 
-dependencies {
-  def remoteDependencies = rootProject.ext.remoteDependencies
-  def remoteTestDependencies = rootProject.ext.remoteTestDependencies
+/**
+ * ApplicationComponent description
+ *
+ * @author Julien NORMAND - Orange Applications for Business [julien.normand@orange.com](julien.normand@orange.com)
+ * @version 1.0.0
+ * @since 2017-09-10
+ */
+@PerApplication
+@Component(modules = arrayOf(ActivityBindingModule::class, ApplicationModule::class))
+interface ApplicationComponent {
 
-  implementation project(':data')
+  @Component.Builder
+  interface Builder {
+    @BindsInstance
+    fun application(application: Application): Builder
 
-  implementation remoteDependencies.javaxInject
-  implementation remoteDependencies.kotlin
-  implementation remoteDependencies.moshi
-  implementation remoteDependencies.moshiAdapter
-  implementation remoteDependencies.okHttp
-  implementation remoteDependencies.okHttpLogger
-  implementation remoteDependencies.retrofit
-  implementation remoteDependencies.retrofitConverter
-  implementation remoteDependencies.retrofitAdapter
-  implementation remoteDependencies.rxKotlin
+    fun build(): ApplicationComponent
+  }
 
-  implementation remoteTestDependencies.junit
-  implementation remoteTestDependencies.kotlinJUnit
-  implementation remoteTestDependencies.mockito
+  fun inject(app: App)
 }

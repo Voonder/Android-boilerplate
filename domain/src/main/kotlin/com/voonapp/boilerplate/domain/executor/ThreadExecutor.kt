@@ -20,29 +20,16 @@
  * SOFTWARE.
  */
 
-apply plugin: 'kotlin'
+package com.voonapp.boilerplate.domain.executor
 
-sourceCompatibility = "1.8"
-targetCompatibility = "1.8"
+import java.util.concurrent.Executor
 
-dependencies {
-  def remoteDependencies = rootProject.ext.remoteDependencies
-  def remoteTestDependencies = rootProject.ext.remoteTestDependencies
-
-  implementation project(':data')
-
-  implementation remoteDependencies.javaxInject
-  implementation remoteDependencies.kotlin
-  implementation remoteDependencies.moshi
-  implementation remoteDependencies.moshiAdapter
-  implementation remoteDependencies.okHttp
-  implementation remoteDependencies.okHttpLogger
-  implementation remoteDependencies.retrofit
-  implementation remoteDependencies.retrofitConverter
-  implementation remoteDependencies.retrofitAdapter
-  implementation remoteDependencies.rxKotlin
-
-  implementation remoteTestDependencies.junit
-  implementation remoteTestDependencies.kotlinJUnit
-  implementation remoteTestDependencies.mockito
-}
+/**
+ * Executor implementation can be based on different frameworks or techniques of asynchronous
+ * execution, but every implementation will execute the [ThreadExecutor]
+ *
+ * @author Julien NORMAND - Orange Applications for Business [julien.normand@orange.com](julien.normand@orange.com)
+ * @version 1.0.0
+ * @since 2017-09-09
+ */
+interface ThreadExecutor : Executor

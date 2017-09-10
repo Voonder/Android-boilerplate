@@ -1,5 +1,5 @@
 // IDE
-final def gradle = '3.0.0-beta4'
+final def gradle = '3.0.0-beta5'
 final def kotlin = '1.1.4-3'
 
 // LIBRARIES
@@ -13,6 +13,7 @@ final def leakCanaryVersion = '1.5.2'
 final def moshiVersion = '1.5.0'
 final def okHttpVersion = '3.9.0'
 final def retrofitVersion = '2.3.0'
+final def roomVersion = '1.0.0-alpha9'
 final def rxAndroidVersion = '2.0.1'
 final def rxKotlinVersion = '2.1.0'
 
@@ -46,6 +47,9 @@ ext {
   cacheDependencies = [
       javaxInject: "javax.inject:javax.inject:$javaxVersion",
       kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion",
+      room: "android.arch.persistence.room:runtime:$roomVersion",
+      roomRx: "android.arch.persistence.room:rxjava2:$roomVersion",
+      roomCompiler: "android.arch.persistence.room:compiler:$roomVersion",
       rxKotlin: "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
   ]
 
@@ -53,6 +57,7 @@ ext {
       junit: "junit:junit:$jUnitVersion",
       kotlinJUnit: "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion",
       robolectric: "org.robolectric:robolectric:$robolectricVersion",
+      room: "android.arch.persistence.room:testing:$roomVersion"
   ]
 
   dataDependencies = [
@@ -120,6 +125,7 @@ ext {
       javaxInject: "javax.inject:javax.inject:$javaxVersion",
       kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion",
       moshi: "com.squareup.moshi:moshi-kotlin:$moshiVersion",
+      moshiAdapter: "com.squareup.moshi:moshi-adapters:$moshiVersion",
       okHttp: "com.squareup.okhttp3:okhttp:$okHttpVersion",
       okHttpLogger: "com.squareup.okhttp3:logging-interceptor:$okHttpVersion",
       retrofit: "com.squareup.retrofit2:retrofit:$retrofitVersion",

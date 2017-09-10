@@ -20,29 +20,45 @@
  * SOFTWARE.
  */
 
-apply plugin: 'kotlin'
+package com.voonapp.boilerplate.domain.test.factory
 
-sourceCompatibility = "1.8"
-targetCompatibility = "1.8"
+import java.util.UUID
+import java.util.concurrent.ThreadLocalRandom
 
-dependencies {
-  def remoteDependencies = rootProject.ext.remoteDependencies
-  def remoteTestDependencies = rootProject.ext.remoteTestDependencies
+/**
+ * Factory class for data instances
+ *
+ * @author Julien NORMAND - Orange Applications for Business [julien.normand@orange.com](julien.normand@orange.com)
+ * @version 1.0.0
+ * @since 2017-09-09
+ */
+class DataFactory {
 
-  implementation project(':data')
+  companion object Factory {
 
-  implementation remoteDependencies.javaxInject
-  implementation remoteDependencies.kotlin
-  implementation remoteDependencies.moshi
-  implementation remoteDependencies.moshiAdapter
-  implementation remoteDependencies.okHttp
-  implementation remoteDependencies.okHttpLogger
-  implementation remoteDependencies.retrofit
-  implementation remoteDependencies.retrofitConverter
-  implementation remoteDependencies.retrofitAdapter
-  implementation remoteDependencies.rxKotlin
+    fun randomUuid(): String {
+      return UUID.randomUUID().toString()
+    }
 
-  implementation remoteTestDependencies.junit
-  implementation remoteTestDependencies.kotlinJUnit
-  implementation remoteTestDependencies.mockito
+    fun randomInt(): Int {
+      return ThreadLocalRandom.current().nextInt(0, 1000 + 1)
+    }
+
+    fun randomLong(): Long {
+      return randomInt().toLong()
+    }
+
+    fun randomBoolean(): Boolean {
+      return Math.random() < 0.5
+    }
+
+    fun makeStringList(count: Int): List<String> {
+      val items: MutableList<String> = mutableListOf()
+      repeat(count) {
+        items.add(randomUuid())
+      }
+      return items
+    }
+
+  }
 }

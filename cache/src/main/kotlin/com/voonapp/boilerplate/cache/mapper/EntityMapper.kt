@@ -20,29 +20,23 @@
  * SOFTWARE.
  */
 
-apply plugin: 'kotlin'
+package com.voonapp.boilerplate.cache.mapper
 
-sourceCompatibility = "1.8"
-targetCompatibility = "1.8"
+/**
+ * Interface for model mappers. It provides helper methods that facilitate
+ * retrieving of models from outer data source layers
+ *
+ * @param <C> the cached model input type
+ * @param <R> the remote model input type
+ *
+ * @author Julien NORMAND - Orange Applications for Business [julien.normand@orange.com](julien.normand@orange.com)
+ * @version 1.0.0
+ * @since 2017-09-10
+ */
+interface EntityMapper<C, R> {
 
-dependencies {
-  def remoteDependencies = rootProject.ext.remoteDependencies
-  def remoteTestDependencies = rootProject.ext.remoteTestDependencies
+  fun mapFromCached(type: C): R
 
-  implementation project(':data')
+  fun mapToCached(type: R): C
 
-  implementation remoteDependencies.javaxInject
-  implementation remoteDependencies.kotlin
-  implementation remoteDependencies.moshi
-  implementation remoteDependencies.moshiAdapter
-  implementation remoteDependencies.okHttp
-  implementation remoteDependencies.okHttpLogger
-  implementation remoteDependencies.retrofit
-  implementation remoteDependencies.retrofitConverter
-  implementation remoteDependencies.retrofitAdapter
-  implementation remoteDependencies.rxKotlin
-
-  implementation remoteTestDependencies.junit
-  implementation remoteTestDependencies.kotlinJUnit
-  implementation remoteTestDependencies.mockito
 }

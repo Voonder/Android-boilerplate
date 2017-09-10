@@ -20,29 +20,44 @@
  * SOFTWARE.
  */
 
-apply plugin: 'kotlin'
+package com.voonapp.boilerplate.ui
 
-sourceCompatibility = "1.8"
-targetCompatibility = "1.8"
+import android.app.Activity
+import android.app.Application
+import com.squareup.leakcanary.LeakCanary
+import com.squareup.leakcanary.RefWatcher
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasActivityInjector
+import javax.inject.Inject
 
-dependencies {
-  def remoteDependencies = rootProject.ext.remoteDependencies
-  def remoteTestDependencies = rootProject.ext.remoteTestDependencies
+/**
+ * App description
+ *
+ * @author Julien NORMAND - Orange Applications for Business [julien.normand@orange.com](julien.normand@orange.com)
+ * @version 1.0.0
+ * @since 2017-09-10
+ */
+class App : Application(), HasActivityInjector {
 
-  implementation project(':data')
+  @Inject
+  lateinit var activityDispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
 
-  implementation remoteDependencies.javaxInject
-  implementation remoteDependencies.kotlin
-  implementation remoteDependencies.moshi
-  implementation remoteDependencies.moshiAdapter
-  implementation remoteDependencies.okHttp
-  implementation remoteDependencies.okHttpLogger
-  implementation remoteDependencies.retrofit
-  implementation remoteDependencies.retrofitConverter
-  implementation remoteDependencies.retrofitAdapter
-  implementation remoteDependencies.rxKotlin
+  override fun onCreate() {
+    super.onCreate()
 
-  implementation remoteTestDependencies.junit
-  implementation remoteTestDependencies.kotlinJUnit
-  implementation remoteTestDependencies.mockito
+    // Initialize Libraries
+    setupLeakCanary()
+  }
+
+  override fun activityInjector(): AndroidInjector<Activity> {
+    return activityDispatchingAndroidInjector
+  }
+
+  private fun setupLeakCanary(): RefWatcher {
+    if (LeakCanary.isInAnalyzerProcess(this)) {
+      return RefWatcher.DISABLED;
+    }
+    return LeakCanary.install(this)
+  }
 }
