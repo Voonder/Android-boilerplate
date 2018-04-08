@@ -42,12 +42,12 @@ captures/
 
 # Intellij ignore exceptions
 !/.idea/icon**
+!/.idea/codeStyles/
 !/.idea/copyright/
 !/.idea/fileTemplates/
 !/.idea/inspectionProfiles/
 !/.idea/scopes/
 !/.idea/.name
-!/.idea/codeStyleSettings.xml
 !/.idea/compiler.xml
 !/.idea/encodings.xml
 !/.idea/externalDependencies.xml
