@@ -20,6 +20,20 @@
  * SOFTWARE.
  */
 
-include ':app'
+package com.voonapp.boilerplate.di
 
-rootProject.name = "Android_Boilerplate"
+import android.arch.lifecycle.ViewModel
+import dagger.MapKey
+import kotlin.reflect.KClass
+
+/**
+ * ViewModelKey description
+ *
+ * @author Julien NORMAND - Orange Applications for Business [julien.normand@orange.com](julien.normand@orange.com)
+ * @version 1.0.0
+ * @since 2018-06-20
+ */
+@Target(AnnotationTarget.FUNCTION, AnnotationTarget.PROPERTY_GETTER, AnnotationTarget.PROPERTY_SETTER)
+@Retention(AnnotationRetention.RUNTIME)
+@MapKey
+annotation class ViewModelKey(val value: KClass<out ViewModel>)

@@ -20,6 +20,27 @@
  * SOFTWARE.
  */
 
-include ':app'
+package com.voonapp.boilerplate.domain.interactor
 
-rootProject.name = "Android_Boilerplate"
+import android.arch.lifecycle.LiveData
+
+/**
+ * A LiveData class that has `null` value.
+ *
+ * @author Julien NORMAND - Orange Applications for Business [julien.normand@orange.com](julien.normand@orange.com)
+ * @version 1.0.0
+ * @since 2018-06-20
+ */
+class AbsentLiveData<T : Any?> private constructor() : LiveData<T>() {
+
+    init {
+        // use post instead of set since this can be created on any thread
+        postValue(null)
+    }
+
+    companion object {
+        fun <T> create(): LiveData<T> {
+            return AbsentLiveData()
+        }
+    }
+}

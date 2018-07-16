@@ -20,6 +20,28 @@
  * SOFTWARE.
  */
 
-include ':app'
+package com.voonapp.boilerplate.di.module
 
-rootProject.name = "Android_Boilerplate"
+import android.app.Application
+import android.arch.persistence.room.Room
+import com.voonapp.boilerplate.data.cache.AppDatabase
+import dagger.Module
+import dagger.Provides
+
+/**
+ * Module that provides all dependencies from the cache package/layer.
+ *
+ * @author Julien NORMAND - Orange Applications for Business [julien.normand@orange.com](julien.normand@orange.com)
+ * @version 1.0.0
+ * @since 2018-06-20
+ */
+@Module
+class CacheModule {
+
+    @Provides
+    fun provideAppDatabase(application: Application): AppDatabase {
+        return Room.databaseBuilder(application.applicationContext, AppDatabase::class.java, "orange.db")
+            .fallbackToDestructiveMigration()
+            .build()
+    }
+}

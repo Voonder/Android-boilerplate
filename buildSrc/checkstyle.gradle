@@ -20,6 +20,16 @@
  * SOFTWARE.
  */
 
-include ':app'
+import com.orange.gradle.Plugins
 
-rootProject.name = "Android_Boilerplate"
+detekt {
+    version = Plugins.detektVersion
+
+    defaultProfile {
+        input = file("src/main/java")
+        config = file("${rootProject.rootDir}/detekt.yml")
+        filters = ".*test.*,.*/resources/.*,.*/tmp/.*"
+        output = file("${project.buildDir}/build/reports/")
+        parallel = true
+    }
+}

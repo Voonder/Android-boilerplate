@@ -20,6 +20,13 @@
  * SOFTWARE.
  */
 
-include ':app'
+apply plugin: 'org.jetbrains.dokka-android'
 
-rootProject.name = "Android_Boilerplate"
+dokka {
+    outputFormat = 'html'
+    outputDirectory = "$buildDir/javadoc"
+    includes = ['dokka-module.md', 'dokka-package.md']
+    skipEmptyPackages = false
+
+    jdkVersion = 8
+}

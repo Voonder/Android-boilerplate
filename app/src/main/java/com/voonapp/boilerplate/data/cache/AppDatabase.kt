@@ -20,6 +20,23 @@
  * SOFTWARE.
  */
 
-include ':app'
+package com.voonapp.boilerplate.data.cache
 
-rootProject.name = "Android_Boilerplate"
+import android.arch.persistence.room.Database
+import android.arch.persistence.room.RoomDatabase
+import android.arch.persistence.room.TypeConverters
+import com.voonapp.boilerplate.BuildConfig
+import com.voonapp.boilerplate.data.cache.converter.DateConverter
+
+/**
+ * AppDatabase description
+ *
+ * @author Julien NORMAND - Orange Applications for Business [julien.normand@orange.com](julien.normand@orange.com)
+ * @version 1.0.0
+ * @since 2018-07-16
+ */
+@Database(
+    entities = [], version = BuildConfig.VERSION_DATABASE
+)
+@TypeConverters(DateConverter::class)
+abstract class AppDatabase : RoomDatabase()

@@ -20,6 +20,16 @@
  * SOFTWARE.
  */
 
-include ':app'
+package com.voonapp.boilerplate.di.module
 
-rootProject.name = "Android_Boilerplate"
+import dagger.Module
+
+/**
+ * Module that provides all dependencies from the remote package/layer.
+ *
+ * @author Julien NORMAND - Orange Applications for Business [julien.normand@orange.com](julien.normand@orange.com)
+ * @version 1.0.0
+ * @since 2018-06-20
+ */
+@Module
+class RemoteModule

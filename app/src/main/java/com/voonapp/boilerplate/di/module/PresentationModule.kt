@@ -20,6 +20,24 @@
  * SOFTWARE.
  */
 
-include ':app'
+package com.voonapp.boilerplate.di.module
 
-rootProject.name = "Android_Boilerplate"
+import android.arch.lifecycle.ViewModelProvider
+import com.voonapp.boilerplate.di.ViewModelFactory
+import dagger.Binds
+import dagger.Module
+
+/**
+ * Module that provides all dependencies from the presentation package/layer.
+ *
+ * @author Julien NORMAND - Orange Applications for Business [julien.normand@orange.com](julien.normand@orange.com)
+ * @version 1.0.0
+ * @since 2018-06-20
+ */
+@Module
+@Suppress("unused")
+abstract class PresentationModule {
+
+    @Binds
+    abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
+}

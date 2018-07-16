@@ -1,18 +1,58 @@
+/*
+ * Copyright (c) 2018 Voonder
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+import com.orange.gradle.Plugins
+import org.gradle.api.tasks.wrapper.Wrapper.DistributionType
+
 buildscript {
-  apply from: rootProject.file("buildsystem/dependencies.gradle")
-
-  repositories {
-    google()
-    jcenter()
-  }
-
-  dependencies {
-    classpath "com.android.tools.build:gradle:$gradleVersion"
-    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-  }
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath Plugins.androidStudio
+        classpath Plugins.dokka
+        classpath Plugins.kotlin
+    }
 }
 
-task wrapper(type: Wrapper) {
-  gradleVersion = '4.6'
-  distributionType = Wrapper.DistributionType.ALL
+// FIXME : When Gradle DSL fix the variable in plugin, use Dependencies.Plugins
+plugins {
+    id "io.gitlab.arturbosch.detekt" version "1.0.0.RC7-2"
+    id "net.ltgt.errorprone" version "0.0.14"
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+wrapper {
+    gradleVersion "4.8"
+    distributionType DistributionType.ALL
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
 }

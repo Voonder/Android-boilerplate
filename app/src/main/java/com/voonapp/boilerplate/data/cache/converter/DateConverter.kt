@@ -20,6 +20,27 @@
  * SOFTWARE.
  */
 
-include ':app'
+package com.voonapp.boilerplate.data.cache.converter
 
-rootProject.name = "Android_Boilerplate"
+import android.arch.persistence.room.TypeConverter
+import java.util.*
+
+/**
+ * DateConverter description
+ *
+ * @author Julien NORMAND - Orange Applications for Business [julien.normand@orange.com](julien.normand@orange.com)
+ * @version 1.0.0
+ * @since 2018-07-16
+ */
+class DateConverter {
+
+    @TypeConverter
+    fun fromTimestamp(value: Long?): Date? {
+        return if (value == null) null else Date(value)
+    }
+
+    @TypeConverter
+    fun toTimestamp(date: Date?): Long? {
+        return date?.time
+    }
+}

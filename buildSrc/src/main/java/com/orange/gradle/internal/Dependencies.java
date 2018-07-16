@@ -20,6 +20,10 @@
  * SOFTWARE.
  */
 
-include ':app'
+package com.orange.gradle.internal;
 
-rootProject.name = "Android_Boilerplate"
+public abstract class Dependencies {
+
+    protected static final String kotlinVersion = "1.2.51";
+
+}

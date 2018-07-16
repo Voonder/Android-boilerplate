@@ -20,6 +20,25 @@
  * SOFTWARE.
  */
 
-include ':app'
+package com.voonapp.boilerplate.di.module
 
-rootProject.name = "Android_Boilerplate"
+import android.app.Application
+import android.content.Context
+import dagger.Module
+import dagger.Provides
+
+/**
+ * Module used to provide dependencies at an application-level.
+ *
+ * @author Julien NORMAND - Orange Applications for Business [julien.normand@orange.com](julien.normand@orange.com)
+ * @version 1.0.0
+ * @since 2018-06-20
+ */
+@Module
+class ApplicationModule {
+
+    @Provides
+    fun bindContext(application: Application): Context {
+        return application
+    }
+}

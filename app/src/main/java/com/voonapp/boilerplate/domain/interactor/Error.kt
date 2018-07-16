@@ -20,6 +20,16 @@
  * SOFTWARE.
  */
 
-include ':app'
+package com.voonapp.boilerplate.domain.interactor
 
-rootProject.name = "Android_Boilerplate"
+/**
+ * A class that holds an error to retrieve data from network.
+ *
+ * @author Julien NORMAND - Orange Applications for Business [julien.normand@orange.com](julien.normand@orange.com)
+ * @version 1.0.0
+ * @since 2018-06-20
+ *
+ * @property code The network request code number
+ * @property message The error message to display or interpret
+ */
+data class Error(val code: Int, val message: String)

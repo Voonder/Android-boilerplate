@@ -20,6 +20,20 @@
  * SOFTWARE.
  */
 
-include ':app'
+package com.orange.gradle;
 
-rootProject.name = "Android_Boilerplate"
+@SuppressWarnings("unused")
+public final class Android {
+    private static final int MIN_ANDROID_VERSION = 21;
+    private static final int MAX_ANDROID_VERSION = 27;
+    private static final String PACKAGE_NAME = "com.voonapp.boilerplate";
+
+    public static final String buildTools = "27.0.3";
+    public static final int compileSdk = MAX_ANDROID_VERSION;
+    public static final int minSdk = MIN_ANDROID_VERSION;
+    public static final int targetSdk = MAX_ANDROID_VERSION;
+
+    public final class Package {
+        public static final String base = PACKAGE_NAME;
+    }
+}

@@ -4,7 +4,6 @@
 
 # Built application files
 *.apk
-*.ap_
 
 # Files for the ART/Dalvik VM
 *.dex
@@ -14,13 +13,13 @@
 
 # Generated files
 bin/
-/**/release/
 gen/
 out/
 
 # Gradle files
 .gradle/
 /**/build/
+/**/release/
 
 # Local configuration file (sdk path, etc)
 local.properties
@@ -47,11 +46,15 @@ captures/
 !/.idea/fileTemplates/
 !/.idea/inspectionProfiles/
 !/.idea/scopes/
+!/.idea/runConfigurations/
 !/.idea/.name
 !/.idea/compiler.xml
 !/.idea/encodings.xml
 !/.idea/externalDependencies.xml
 !/.idea/vcs.xml
+
+# Variable file for Javadoc / Kdoc generation
+/.idea/fileTemplates/includes/_Variables.*
 
 # Keystore files
 #*.jks
@@ -59,10 +62,3 @@ captures/
 # External native build folder generated in Android Studio 2.2 and later
 .externalNativeBuild
 gen-external-apklibs
-
-####################
-# Operating System #
-####################
-
-.DS_Store
-Thumbs.db
