@@ -65,6 +65,7 @@ public final class Libraries extends Dependencies {
     public static final String appCompatV7 = "com.android.support:appcompat-v7:" + androidVersion;
     public static final String cardView = "com.android.support:cardView-v7:" + androidVersion;
     public static final String constraintLayout = "com.android.support.constraint:constraint-layout:" + constraintLayoutVersion;
+    public static final String design = "com.android.support:design:" + androidVersion;
     public static final String recyclerView = "com.android.support:recyclerView-v7:" + androidVersion;
     public static final String paging = "android.arch.paging:runtime:" + pagingVersion;
     public static final String room = "android.arch.persistence.room:runtime:" + roomVersion;

@@ -149,9 +149,11 @@ dependencies {
 
     implementation Libraries.appCompatV7
     implementation Libraries.archExtensions
+    implementation Libraries.constraintLayout
     implementation Libraries.dagger
     implementation Libraries.daggerAndroid
     implementation Libraries.daggerSupport
+    implementation Libraries.design
     implementation Libraries.glide
     implementation Libraries.javaxInject
     implementation Libraries.moshi

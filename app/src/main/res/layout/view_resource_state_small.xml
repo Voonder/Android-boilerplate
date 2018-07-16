@@ -22,22 +22,32 @@
   ~ SOFTWARE.
   -->
 
-<resources>
-    <string name="app_name" translatable="false">Android Boilerplate</string>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
+    <com.ucpa.wellness.ui.view.widget.LoadingView
+        android:id="@+id/viewLoadingSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:sv_size="small" />
 
-    <!-- region Empty View -->
+    <com.ucpa.wellness.ui.view.widget.EmptyView
+        android:id="@+id/viewEmptySmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:sv_size="small" />
 
-    <string name="empty_view_no_result">No data</string>
-    <string name="empty_view_check_again">Check again</string>
+    <com.ucpa.wellness.ui.view.widget.ErrorView
+        android:id="@+id/viewErrorSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:sv_size="small" />
 
-    <!-- endregion -->
-
-    <!-- region Error View -->
-
-    <string name="error_view_fetching_fail">Network error</string>
-    <string name="error_view_try_again">Try again</string>
-
-    <!-- endregion -->
-
-</resources>
+</LinearLayout>

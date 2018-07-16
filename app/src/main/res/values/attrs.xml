@@ -23,21 +23,13 @@
   -->
 
 <resources>
-    <string name="app_name" translatable="false">Android Boilerplate</string>
 
-
-    <!-- region Empty View -->
-
-    <string name="empty_view_no_result">No data</string>
-    <string name="empty_view_check_again">Check again</string>
-
-    <!-- endregion -->
-
-    <!-- region Error View -->
-
-    <string name="error_view_fetching_fail">Network error</string>
-    <string name="error_view_try_again">Try again</string>
-
-    <!-- endregion -->
-
+    <!-- StateView class attributes. -->
+    <declare-styleable name="StateView">
+        <!-- Defines the size of the view. -->
+        <attr name="sv_size" format="enum">
+            <enum name="small" value="1" />
+            <enum name="normal" value="2" />
+        </attr>
+    </declare-styleable>
 </resources>
