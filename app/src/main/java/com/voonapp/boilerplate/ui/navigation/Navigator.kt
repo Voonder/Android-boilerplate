@@ -20,34 +20,21 @@
  * SOFTWARE.
  */
 
-package com.voonapp.boilerplate.di.module
+package com.voonapp.boilerplate.ui.navigation
 
-import android.app.Application
-import android.content.Context
-import com.voonapp.boilerplate.ui.navigation.Navigator
-import dagger.Module
-import dagger.Provides
+import android.view.View
+import javax.inject.Inject
 import javax.inject.Singleton
 
 /**
- * Module used to provide dependencies at an application-level.
+ * Navigator description
  *
  * @author Julien NORMAND - Orange Applications for Business [julien.normand@orange.com](julien.normand@orange.com)
  * @version 1.0.0
- * @since 2018-06-20
+ * @since 2018-07-16
  */
-@Module
-class ApplicationModule {
+@Singleton
+class Navigator @Inject constructor() {
 
-    @Provides
-    fun bindContext(application: Application): Context {
-        return application
-    }
-
-    @Provides
-    @Singleton
-    fun provideAppNavigator(): Navigator {
-        return Navigator()
-    }
-
+    class Extras(val transitionSharedElement: View)
 }

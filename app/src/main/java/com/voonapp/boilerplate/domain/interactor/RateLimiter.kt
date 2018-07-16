@@ -51,7 +51,6 @@ class RateLimiter<in T> constructor(timeout: Int, timeUnit: TimeUnit) {
     @Synchronized
     fun shouldFetch(key: T): Boolean {
         val lastFetched = timestamps[key]
-        timestamps.forEach { t, u ->  }
         val now = now()
         if (lastFetched == null) {
             timestamps[key] = now
