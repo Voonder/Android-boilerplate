@@ -20,24 +20,32 @@
  * SOFTWARE.
  */
 
-package com.voonapp.boilerplate.di.module
+package com.voonapp.boilerplate.ui.view.notification
 
-import dagger.Module
 
-/**
- * Module that provides all dependencies from the cache package/layer.
- *
- * @author Julien NORMAND - Orange Applications for Business [julien.normand@orange.com](julien.normand@orange.com)
- * @version 1.0.0
- * @since 2018-06-20
- */
-@Module
-class CacheModule {
+import android.graphics.Bitmap
+import android.os.Build
+import android.support.annotation.ColorRes
+import android.support.annotation.DrawableRes
+import android.support.annotation.RequiresApi
 
-//    @Provides
-//     fun provideAppDatabase(application: Application): AppDatabase {
-//         return Room.databaseBuilder(application.applicationContext, AppDatabase::class.java, "orange.db")
-//             .fallbackToDestructiveMigration()
-//             .build()
-//     }
+object NotificationInformation {
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    data class Channel(var id: String, var name: String, var descrition: String)
+
+    data class Content(
+        var id: Long,
+        var title: String,
+        var message: String,
+        var withBigIcon: Boolean = true,
+        var image: Bitmap? = null
+    )
+
+    data class Data(
+        var groupKey: String,
+        var category: String,
+        @ColorRes var color: Int,
+        @DrawableRes var icon: Int
+    )
 }

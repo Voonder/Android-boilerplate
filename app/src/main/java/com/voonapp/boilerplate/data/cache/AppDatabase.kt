@@ -35,8 +35,8 @@ import com.voonapp.boilerplate.data.cache.converter.DateConverter
  * @version 1.0.0
  * @since 2018-07-16
  */
-@Database(
-    entities = [], version = BuildConfig.VERSION_DATABASE
-)
-@TypeConverters(DateConverter::class)
-abstract class AppDatabase : RoomDatabase()
+// @Database(
+//     entities = [], version = BuildConfig.VERSION_DATABASE
+// )
+// @TypeConverters(DateConverter::class)
+// abstract class AppDatabase : RoomDatabase()
