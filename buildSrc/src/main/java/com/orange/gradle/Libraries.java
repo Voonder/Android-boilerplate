@@ -32,7 +32,7 @@ public final class Libraries extends Dependencies {
     // region Versions
 
     private static final String androidVersion = "27.1.1";
-    private static final String androidFixVersion = "27.1.1.1";
+    private static final String androidFixVersion = "27.1.1.2";
     private static final String androidArchVersion = "1.1.1";
     private static final String constraintLayoutVersion = "1.1.2";
     private static final String daggerVersion = "2.16";

@@ -163,6 +163,7 @@ dependencies {
     implementation Libraries.okhttp
     implementation Libraries.okhttpInterceptor
     implementation Libraries.paging
+    implementation Libraries.preferenceV7
     implementation Libraries.room
     implementation Libraries.timber
 
